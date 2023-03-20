@@ -1,5 +1,6 @@
 import pandas as pd
 import sqlalchemy as db
+import model.constants as c
 
 
 class Database:
@@ -46,5 +47,5 @@ class Database:
             tablename,
             self.connection.engine
         )
-        table_df.set_index('x', inplace=True)
+        table_df.set_index(c.COLUMN_X, inplace=True)
         return table_df

@@ -2,27 +2,28 @@ import model.database as database
 import controller.functions
 import view.visualize
 import controller.check
+import model.constants as c
 
 if __name__ == '__main__':
 
     # Prüfen ob Dateien existieren
-    controller.check.checkFiles('train.csv')
-    controller.check.checkFiles('test.csv')
-    controller.check.checkFiles('ideal.csv')
+    controller.check.checkFiles(c.FILE_TRAIN)
+    controller.check.checkFiles(c.FILE_TEST)
+    controller.check.checkFiles(c.FILE_IDEAL)
 
     # DB Verbindung herstellen
-    __connectionStr__ = 'sqlite:///dlmdwpmp01.db'
+    __connectionStr__ = c.NAME_DATABASE
     db_instance = database.Database(__connectionStr__, '')
     conn_meta = db_instance.connectToDb()
     metadata = conn_meta[1]
 
     # Trainings- und Idealfunktionen in DB speichern
-    db_instance.loadDataToDatabase('Trainingsfunktionen', 'train.csv')
-    db_instance.loadDataToDatabase('Idealfunktionen', 'ideal.csv')
+    db_instance.loadDataToDatabase(c.NAME_TRAIN_FCT, c.FILE_TRAIN)
+    db_instance.loadDataToDatabase(c.NAME_IDEAL_FCT, c.FILE_IDEAL)
 
     # Daten aus Datenbank laden
-    df_train = db_instance.get_dataframe_from_Db('Trainingsfunktionen')
-    df_ideal = db_instance.get_dataframe_from_Db('Idealfunktionen')
+    df_train = db_instance.get_dataframe_from_Db(c.NAME_TRAIN_FCT)
+    df_ideal = db_instance.get_dataframe_from_Db(c.NAME_IDEAL_FCT)
 
     # X-Werte der Trainingsfunktionen und der idealen Funktionen abgleichen
     controller.check.checkData(df_train, df_ideal)
@@ -37,7 +38,7 @@ if __name__ == '__main__':
     result = controller.functions.validate_selection(lst_best_fits, df_ideal)
 
     # Speichern der Ergebnisse in der DB
-    db_instance.loadDataToDatabase('Validierung', result)
+    db_instance.loadDataToDatabase(c.NAME_VALIDATE, result)
 
     # Outliers und Fits für die Visualisierung ermitteln
     dictionaries = controller.functions.get_outliers(result)
