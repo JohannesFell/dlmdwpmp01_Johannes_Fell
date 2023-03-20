@@ -1,5 +1,6 @@
 import model.database as database
 import controller.functions
+import view.visualize
 
 if __name__ == '__main__':
 
@@ -29,3 +30,11 @@ if __name__ == '__main__':
     # Speichern der Ergebnisse in der DB
     db_instance.loadDataToDatabase('Validierung', result)
 
+    # Outliers und Fits für die Visualisierung ermitteln
+    dictionaries = controller.functions.get_outliers(result)
+
+    # Visualisierung der best Fits
+    view.visualize.visualize_best_fits(df_train, df_ideal, lst_best_fits)
+
+    # Visualising der validierten Daten und deren Abweichungen
+    view.visualize.visualize_results(dictionaries[0], dictionaries[1], df_ideal, lst_best_fits)

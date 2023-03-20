@@ -70,3 +70,22 @@ def validate_selection(lst_best_fits, df_ideal):
     df_test_ideal.drop(df_test_ideal.columns[2:6], axis=1, inplace=True)
 
     return df_test_ideal
+
+
+def get_outliers(df_validated):
+    """
+    Funktion zur Ermittlung der Outliers und der Fits.
+    :param df_validated: Dataframe der validierten Funktionen
+    :return: es wird je ein Dictionary mit den Outliers und den Fits zurückgegeben
+    """
+    dct_outliers = {}
+    dct_fits = {}
+
+    for row in df_validated.index:
+        if not pd.isnull(df_validated['ideale Fkt'][row]):
+            # Als Key die y-Werte, verhindert zwar nicht Duplicates, aber minimiert zumindest die Wahrscheinlichkeit
+            dct_fits[df_validated['Y-Test'][row]] = [df_validated['X-Test'][row]]
+        else:
+            dct_outliers[df_validated['Y-Test'][row]] = [df_validated['X-Test'][row]]
+
+    return dct_outliers, dct_fits
