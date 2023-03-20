@@ -31,8 +31,6 @@ def find_best_fits(fct, lst_best_fits, df_train, df_ideal):
             ideal_fct = column
 
     lst_best_fits.append(ideal_fct)
-    # TODO DELETE LOG
-    print('best fit für Trainingsfunktion ' + fct + ' ist: ' + ideal_fct)
 
     return lst_best_fits
 

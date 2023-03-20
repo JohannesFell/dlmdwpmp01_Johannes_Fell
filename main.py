@@ -5,6 +5,7 @@ import controller.check
 import model.constants as c
 
 if __name__ == '__main__':
+    print('start __main__')
 
     # Prüfen ob Dateien existieren
     controller.check.checkFiles(c.FILE_TRAIN)
@@ -49,3 +50,5 @@ if __name__ == '__main__':
 
     # Visualising der validierten Daten und deren Abweichungen
     view.visualize.visualize_results(dictionaries[0], dictionaries[1], df_ideal, lst_best_fits)
+
+    print('end __main__')
