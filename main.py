@@ -1,8 +1,14 @@
 import model.database as database
 import controller.functions
 import view.visualize
+import controller.check
 
 if __name__ == '__main__':
+
+    # Prüfen ob Dateien existieren
+    controller.check.checkFiles('train.csv')
+    controller.check.checkFiles('test.csv')
+    controller.check.checkFiles('ideal.csv')
 
     # DB Verbindung herstellen
     __connectionStr__ = 'sqlite:///dlmdwpmp01.db'
@@ -17,6 +23,9 @@ if __name__ == '__main__':
     # Daten aus Datenbank laden
     df_train = db_instance.get_dataframe_from_Db('Trainingsfunktionen')
     df_ideal = db_instance.get_dataframe_from_Db('Idealfunktionen')
+
+    # X-Werte der Trainingsfunktionen und der idealen Funktionen abgleichen
+    controller.check.checkData(df_train, df_ideal)
 
     # best Fits finden (LeastSquare)
     # Liste für die best Fits
@@ -34,6 +43,7 @@ if __name__ == '__main__':
     dictionaries = controller.functions.get_outliers(result)
 
     # Visualisierung der best Fits
+    controller.check.checkCount(df_train, lst_best_fits)
     view.visualize.visualize_best_fits(df_train, df_ideal, lst_best_fits)
 
     # Visualising der validierten Daten und deren Abweichungen
