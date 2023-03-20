@@ -1,4 +1,5 @@
 import model.database as database
+import controller.functions
 
 if __name__ == '__main__':
 
@@ -15,4 +16,10 @@ if __name__ == '__main__':
     # Daten aus Datenbank laden
     df_train = db_instance.get_dataframe_from_Db('Trainingsfunktionen')
     df_ideal = db_instance.get_dataframe_from_Db('Idealfunktionen')
+
+    # best Fits finden (LeastSquare)
+    # Liste für die best Fits
+    lst_best_fits = []
+    for fct in df_train.columns:
+        controller.functions.find_best_fits(fct, lst_best_fits, df_train, df_ideal)
 
