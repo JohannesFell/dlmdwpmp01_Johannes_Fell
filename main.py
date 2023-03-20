@@ -23,3 +23,9 @@ if __name__ == '__main__':
     for fct in df_train.columns:
         controller.functions.find_best_fits(fct, lst_best_fits, df_train, df_ideal)
 
+    # Validierung der best Fits anhand der Testfunktionen und Speicherung der Abweichung
+    result = controller.functions.validate_selection(lst_best_fits, df_ideal)
+
+    # Speichern der Ergebnisse in der DB
+    db_instance.loadDataToDatabase('Validierung', result)
+
