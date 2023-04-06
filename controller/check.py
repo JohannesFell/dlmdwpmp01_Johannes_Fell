@@ -1,5 +1,5 @@
 import os
-from controller.exceptionHandling import FileNotFoundInDictionaryError, XValuesNotIdenticalError, \
+from controller.exceptionHandling import FileNotFoundInDirectoryError, XValuesNotIdenticalError, \
     TooManyColumnsForVisualization
 
 
@@ -12,7 +12,7 @@ def checkFiles(filename):
     directory = os.path.abspath(os.getcwd())
 
     if not os.path.exists(directory + '/' + filename):
-        raise FileNotFoundInDictionaryError('Datei: ' + filename + ' im Verzeichnis ' + directory + ' nicht gefunden!')
+        raise FileNotFoundInDirectoryError('Datei: ' + filename + ' im Verzeichnis ' + directory + ' nicht gefunden!')
     else:
         return True
 

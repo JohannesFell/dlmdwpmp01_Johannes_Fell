@@ -2,7 +2,7 @@ import unittest
 import controller.check
 import model.constants as c
 import pandas as pd
-from controller.exceptionHandling import FileNotFoundInDictionaryError, TooManyColumnsForVisualization
+from controller.exceptionHandling import FileNotFoundInDirectoryError, TooManyColumnsForVisualization
 
 
 # eine Testklasse definieren, die die TestCases von unittest erbt
@@ -18,8 +18,8 @@ class MyUnitTestCases(unittest.TestCase):
         self.assertEqual(testFileTest, True, 'Datei existiert existiert.')
         self.assertEqual(testFileIdeal, True, 'Datei existiert existiert.')
 
-        # Wir erwarten einen FileNotFoundInDictionaryError, wenn die Datei nicht existiert
-        with self.assertRaises(FileNotFoundInDictionaryError):
+        # Wir erwarten einen FileNotFoundInDirectoryError, wenn die Datei nicht existiert
+        with self.assertRaises(FileNotFoundInDirectoryError):
             controller.check.checkFiles('Error.file')
 
     def test_count_Columns(self):

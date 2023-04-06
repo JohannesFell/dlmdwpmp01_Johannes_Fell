@@ -3,7 +3,7 @@ Eigene Klassen für das Exception Handling
 """
 
 
-class FileNotFoundInDictionaryError(Exception):
+class FileNotFoundInDirectoryError(Exception):
     pass
 
 
