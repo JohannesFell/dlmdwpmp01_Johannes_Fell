@@ -17,7 +17,7 @@ class Database:
         connection = engine.connect()
         self.connection = connection
 
-        return self.connection, db.MetaData()
+        return self.connection
 
     def loadDataToDatabase(self, tablename, data):
         """
