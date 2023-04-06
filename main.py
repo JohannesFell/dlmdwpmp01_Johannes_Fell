@@ -15,8 +15,7 @@ if __name__ == '__main__':
     # DB Verbindung herstellen
     __connectionStr__ = c.NAME_DATABASE
     db_instance = database.Database(__connectionStr__, '')
-    conn_meta = db_instance.connectToDb()
-    metadata = conn_meta[1]
+    db_instance.connectToDb()
 
     # Trainings- und Idealfunktionen in DB speichern
     db_instance.loadDataToDatabase(c.NAME_TRAIN_FCT, c.FILE_TRAIN)
