@@ -34,8 +34,6 @@ class Database:
             df = data
 
         df.to_sql(con=self.connection.engine, name=tablename, if_exists='replace', index=False)
-        meta = db.MetaData()
-        meta.create_all(self.connection.engine)
 
     def get_dataframe_from_Db(self, tablename):
         """
