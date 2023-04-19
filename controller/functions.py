@@ -56,7 +56,7 @@ def validate_selection(lst_best_fits, df_ideal):
     # Diff zwischen y Wert auf Test und y wert aus ideal
     for col_ideal in df_test_ideal.columns[2:]:
         for row in df_test_ideal.index:
-            # für jeden y wert aus test den y wert aus ideal diff
+            # Differenz für jeden Y-Wert aus dem Test-Datensatz und Y-Wert aus Idealfunktionen bilden
             diff = abs(df_test_ideal[c.COLUMN_Y][row] - df_test_ideal[col_ideal][row])
 
             # darf Faktor sqrt2 nicht übersteigen >>  diff = sqrt(2) ist ok
@@ -71,7 +71,7 @@ def validate_selection(lst_best_fits, df_ideal):
     return df_test_ideal
 
 
-def get_outliers(df_validated):
+def get_outliers_and_fits(df_validated):
     """
     Funktion zur Ermittlung der Outliers und der Fits.
     :param df_validated: Dataframe der validierten Funktionen

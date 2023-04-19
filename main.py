@@ -41,7 +41,7 @@ if __name__ == '__main__':
     db_instance.loadDataToDatabase(c.NAME_VALIDATE, result)
 
     # Outliers und Fits für die Visualisierung ermitteln
-    dictionaries = controller.functions.get_outliers(result)
+    dictionaries = controller.functions.get_outliers_and_fits(result)
 
     # Visualisierung der best Fits
     controller.check.checkCount(df_train, lst_best_fits)
