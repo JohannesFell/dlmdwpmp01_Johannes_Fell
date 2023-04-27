@@ -14,9 +14,9 @@ class MyUnitTestCases(unittest.TestCase):
         testFileTest = controller.check.checkFiles(c.FILE_TEST)
         testFileIdeal = controller.check.checkFiles(c.FILE_IDEAL)
 
-        self.assertEqual(testFileTrain, True, 'Datei existiert existiert.')
-        self.assertEqual(testFileTest, True, 'Datei existiert existiert.')
-        self.assertEqual(testFileIdeal, True, 'Datei existiert existiert.')
+        self.assertEqual(testFileTrain, True, 'Datei existiert.')
+        self.assertEqual(testFileTest, True, 'Datei existiert.')
+        self.assertEqual(testFileIdeal, True, 'Datei existiert.')
 
         # Wir erwarten einen FileNotFoundInDirectoryError, wenn die Datei nicht existiert
         with self.assertRaises(FileNotFoundInDirectoryError):
